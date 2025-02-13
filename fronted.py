@@ -1,7 +1,7 @@
 import streamlit as st 
 import geemap
 import ee
-import backgroundkod as bk 
+import app as bk 
 from datetime import datetime
 
 # Streamlit sahifa sozlamalari
