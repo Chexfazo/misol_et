@@ -1,0 +1,6 @@
+streamlit
+geemap
+earthengine-api
+folium
+numpy
+pandas
