@@ -1,9 +1,12 @@
 import streamlit as st 
-import geemap
-import ee
 import app as bk 
 from datetime import datetime
-
+try:
+    import geemap
+    import ee
+except ModuleNotFoundError:
+    st.error("geemap kutubxonasini o‘rnatib bo‘lmadi. Iltimos, requirements.txt faylni tekshiring!")
+    
 # Streamlit sahifa sozlamalari
 st.set_page_config(layout="wide", page_title="Evapotranspiration Analysis")
 
