@@ -1,6 +1,7 @@
 try:
     import geemap
     import ee
+    import streamlit as st
     
 except ModuleNotFoundError:
     st.error("geemap kutubxonasini o‘rnatib bo‘lmadi. Iltimos, requirements.txt faylni tekshiring!")
@@ -353,10 +354,27 @@ def evapotranspiration(image):
 
         return image.addBands(et)
 
+try:
+    ee.Initialize()
+except Exception as e:
+    st.error(f"GEE autentifikatsiya xatosi: {e}")
 
+# Streamlit sahifasini sozlaymiz
+st.set_page_config(layout="wide")
+st.title("🌍 Evapotranspiration Monitoring System")
+st.markdown("### Xaritada hudud chizing va ET hisoblang! ")
 
+# Sidebar - Foydalanuvchi parametrlarni kiritadi
+with st.sidebar:
+    st.header("🔧 Parametrlarni tanlang")
+    d_1 = st.date_input("Boshlanish sanasi")
+    d_2 = st.date_input("Tugash sanasi")
+    process = st.button("📊 Hisoblashni boshlash")
+
+# Xarita yaratamiz
 Map = geemap.Map()
-Map
+Map.add_basemap("HYBRID")  # Google Satellite xaritasi
+
 
 landsat = ee.Image('LC08_156033_20190317').filterBounds(roi)
 roi = Map.draw_features
