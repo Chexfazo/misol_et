@@ -1,5 +1,9 @@
-import geemap
-import ee
+try:
+    import geemap
+    import ee
+    
+except ModuleNotFoundError:
+    st.error("geemap kutubxonasini o‘rnatib bo‘lmadi. Iltimos, requirements.txt faylni tekshiring!")
 
 def calc_spek_rad(image):
     """Landsat 8 tasviri uchun spektral radiance hisoblash funksiyasi"""
